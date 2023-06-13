@@ -24,13 +24,22 @@ Route::get('books/latest', function (){
     return view('books.latest');
 })->middleware('auth');
 
-
+Route::get('book/{book_id}', [BookController::class, 'show']);
 
 Route::resource('authors', AuthorController::class);
 
 Route::get('/books/latest', function () {
+    $user = auth()->user();
+    // dd($user);
+    return 'hello' . $user->name;
     return view('books.latest');
 });
+
+
+
+// Route::get('/books/latest', function () {
+//     return view('books.latest');
+// });
 Route::resource('books', BookController::class);
 
 Route::redirect('/home', '/'); // temporary solution

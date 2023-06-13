@@ -7,6 +7,11 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+
+
+    public function latest(){
+        $books = Book::orderedBy('publication_date','DESC')->with('authors')->limit(5)->get();
+    }
     public function index()
     {
         $books = Book::all();

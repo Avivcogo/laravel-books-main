@@ -19,10 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('books/latest', function (){
+    return view('books.latest');
+})->middleware('auth');
+
+
+
 Route::resource('authors', AuthorController::class);
 
 Route::get('/books/latest', function () {
     return view('books.latest');
 });
 Route::resource('books', BookController::class);
+
+Route::redirect('/home', '/'); // temporary solution
 
